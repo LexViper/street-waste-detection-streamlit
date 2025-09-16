@@ -38,15 +38,15 @@ Here are some examples of the Clean City application in action, showcasing the m
 
 ### Main Application Interface
 The main page allows users to upload images or videos for detection and analysis.
-![Main Application Interface](screenshots/main_app_interface.jpg)
+![Main Application Interface](https://raw.githubusercontent.com/LexViper/street-waste-detection-streamlit/main/screenshots/main_app_interface.png)
 
 ### Interactive Features Demo
 This section highlights the app's advanced features, including confidence tuning and chart visualizations.
-![Interactive Features Demo](screenshots/interactive_features_demo.jpg)
+![Interactive Features Demo](https://raw.githubusercontent.com/LexViper/street-waste-detection-streamlit/main/screenshots/interactive_features_demo.png)
 
 ### Model Training Results
 The training dashboard provides a clear overview of model performance with key metrics and visualizations.
-![Model Training Results](screenshots/training_results.jpg)
+![Model Training Results](https://raw.githubusercontent.com/LexViper/street-waste-detection-streamlit/main/screenshots/training_results.png)
 
 ---
 
