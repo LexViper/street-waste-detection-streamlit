@@ -1,0 +1,15 @@
+Sample Videos for Clean City Waste Detection
+
+This folder should contain sample videos for testing the waste detection system.
+Recommended video types:
+- Street cleaning operations
+- Urban environments with visible litter
+- Time-lapse of waste accumulation
+- Recycling center footage
+- Park or public space monitoring
+
+For testing purposes, you can add your own videos here.
+Supported formats: MP4, AVI, MOV
+
+Note: Video processing in the current implementation samples frames for analysis.
+Full video processing can be implemented for production use.

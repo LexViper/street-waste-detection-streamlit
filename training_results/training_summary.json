@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-09-13T00:21:06.700190",
+  "training_time_hours": 0.34702230585945976,
+  "parameters": {
+    "epochs": 10,
+    "batch_size": 10,
+    "image_size": 100,
+    "model_type": "YOLOv8n"
+  },
+  "metrics": {
+    "map50": 0.9712718804397296,
+    "map50_95": 0.958720580629693,
+    "precision": 0.9345928607197295,
+    "recall": 0.9429435516171282
+  },
+  "model_path": "yolo_model/yolov8_waste_trained.pt"
+}

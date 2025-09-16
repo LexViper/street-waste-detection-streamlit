@@ -1,0 +1,323 @@
+Clean City Waste Detection - Detailed Setup Instructions
+========================================================
+
+This document provides step-by-step instructions for setting up and running the Clean City Waste Detection application.
+
+SYSTEM REQUIREMENTS
+==================
+- Operating System: Windows 10+, macOS 10.14+, or Linux Ubuntu 18.04+
+- Python: 3.8 or higher (3.9-3.11 recommended)
+- RAM: 4GB minimum, 8GB+ recommended
+- Storage: 2GB free space
+- Internet: Required for initial package downloads
+- GPU: Optional (NVIDIA GPU with CUDA support for faster processing)
+
+INSTALLATION GUIDE
+==================
+
+Step 1: Install Python
+-----------------------
+Windows:
+1. Download Python from https://python.org/downloads/
+2. Run installer and check "Add Python to PATH"
+3. Verify installation: open Command Prompt and type "python --version"
+
+macOS:
+1. Install Homebrew: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+2. Install Python: brew install python
+3. Verify installation: python3 --version
+
+Linux (Ubuntu/Debian):
+1. Update package list: sudo apt update
+2. Install Python: sudo apt install python3 python3-pip python3-venv
+3. Verify installation: python3 --version
+
+Step 2: Download Project Files
+------------------------------
+1. Download or clone the clean-city-streamlit folder to your desired location
+2. Navigate to the project directory in your terminal/command prompt
+3. Verify all files are present (see README.md for complete file structure)
+
+Step 3: Create Virtual Environment (Recommended)
+-----------------------------------------------
+This isolates the project dependencies from your system Python.
+
+Windows:
+cd clean-city-streamlit
+python -m venv clean_city_env
+clean_city_env\Scripts\activate
+
+macOS/Linux:
+cd clean-city-streamlit
+python3 -m venv clean_city_env
+source clean_city_env/bin/activate
+
+You should see (clean_city_env) at the beginning of your command prompt.
+
+Step 4: Install Dependencies
+---------------------------
+With your virtual environment activated:
+
+pip install -r requirements.txt
+
+This will install all required packages:
+- streamlit (web framework)
+- ultralytics (YOLOv8)
+- opencv-python (image processing)
+- pillow (image handling)
+- numpy (numerical computing)
+- pandas (data manipulation)
+- matplotlib (plotting)
+- plotly (interactive charts)
+- torch/torchvision (deep learning)
+
+Installation may take 5-15 minutes depending on your internet speed.
+
+Step 5: Verify Installation
+---------------------------
+Test that all packages installed correctly:
+
+python -c "import streamlit, ultralytics, cv2, PIL, numpy, pandas, matplotlib, plotly, torch; print('All packages imported successfully!')"
+
+If you see the success message, proceed to the next step.
+
+RUNNING THE APPLICATION
+======================
+
+Step 1: Start the Application
+-----------------------------
+In your terminal with the virtual environment activated:
+
+streamlit run streamlit_app.py
+
+You should see output similar to:
+```
+You can now view your Streamlit app in your browser.
+
+Local URL: http://localhost:8501
+Network URL: http://192.168.1.100:8501
+```
+
+Step 2: Access the Web Interface
+-------------------------------
+1. Your default web browser should automatically open
+2. If not, manually navigate to http://localhost:8501
+3. You should see the Clean City Waste Detection interface
+
+Step 3: Test the Application
+---------------------------
+1. Try the Demo Mode first (no additional setup required)
+2. Upload a test image with visible objects
+3. Verify that detection works and results are displayed
+
+CONFIGURATION OPTIONS
+====================
+
+Demo Mode vs YOLO Mode
+----------------------
+Demo Mode:
+- Uses simulated detections for testing
+- No additional model files required
+- Great for exploring the interface
+- Shows how results would look
+
+YOLO Mode:
+- Uses actual AI model for detection
+- Requires YOLOv8 model weights
+- More accurate results
+- Slower processing
+
+Adding Custom Model Weights
+---------------------------
+To use a custom trained model:
+1. Place your .pt model file in yolo_model/yolov8_weights.pt
+2. Restart the application
+3. Select "YOLO Model (Real)" in the sidebar
+
+Performance Optimization
+-----------------------
+For better performance:
+1. GPU Acceleration (if available):
+   - Install CUDA toolkit from NVIDIA
+   - Install GPU-enabled PyTorch: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+
+2. Memory Management:
+   - Close other applications
+   - Use smaller images (resize to max 1024px width)
+   - Process images individually
+
+3. CPU Optimization:
+   - Ensure Python is using all available cores
+   - Close unnecessary background processes
+
+TROUBLESHOOTING
+==============
+
+Common Installation Issues
+-------------------------
+1. "pip not found":
+   - Windows: Use "py -m pip" instead of "pip"
+   - Ensure Python was added to PATH during installation
+
+2. "Permission denied" errors:
+   - Use --user flag: pip install --user -r requirements.txt
+   - Or run terminal as administrator (Windows)
+
+3. Package conflicts:
+   - Use fresh virtual environment
+   - Update pip: pip install --upgrade pip
+
+4. Slow installation:
+   - Use different package index: pip install -i https://pypi.org/simple/ -r requirements.txt
+
+Runtime Issues
+-------------
+1. "Port 8501 is already in use":
+   - Use different port: streamlit run streamlit_app.py --server.port 8502
+   - Or kill existing Streamlit processes
+
+2. "CUDA out of memory":
+   - Reduce image size
+   - Use CPU mode instead of GPU
+   - Close other GPU-using applications
+
+3. "Module not found" errors:
+   - Ensure virtual environment is activated
+   - Reinstall requirements: pip install -r requirements.txt
+
+4. Slow processing:
+   - Use smaller images
+   - Enable GPU acceleration if available
+   - Increase confidence threshold to reduce detections
+
+Application Issues
+-----------------
+1. No detections appearing:
+   - Try Demo Mode first
+   - Lower confidence threshold
+   - Ensure image contains recognizable objects
+   - Check image format is supported
+
+2. Incorrect detections:
+   - Adjust confidence threshold
+   - Use better quality images
+   - Ensure good lighting in photos
+
+3. Interface not loading:
+   - Clear browser cache
+   - Try different browser
+   - Check console for JavaScript errors
+
+DEVELOPMENT SETUP
+================
+
+For developers wanting to modify the code:
+
+1. Install additional development tools:
+   pip install pytest black flake8 jupyter
+
+2. Code formatting:
+   black .
+
+3. Linting:
+   flake8 .
+
+4. Running tests (if test files exist):
+   pytest
+
+5. Jupyter notebook for experimentation:
+   jupyter notebook
+
+DEPLOYMENT OPTIONS
+=================
+
+Local Network Access
+-------------------
+To allow other devices on your network to access the app:
+streamlit run streamlit_app.py --server.address 0.0.0.0
+
+Then access via http://YOUR_IP_ADDRESS:8501
+
+Cloud Deployment
+---------------
+For production deployment, consider:
+1. Streamlit Cloud (streamlit.io)
+2. Heroku
+3. AWS/Google Cloud/Azure
+4. Docker containers
+
+MAINTENANCE
+===========
+
+Updating Dependencies
+--------------------
+Periodically update packages for security and features:
+pip install --upgrade -r requirements.txt
+
+Backup and Version Control
+-------------------------
+1. Use Git for version control
+2. Backup your custom model weights
+3. Document any configuration changes
+
+Performance Monitoring
+---------------------
+Monitor application performance:
+1. Check memory usage during processing
+2. Monitor processing times
+3. Log any errors or crashes
+
+SUPPORT AND RESOURCES
+====================
+
+Documentation:
+- README.md (main documentation)
+- Inline code comments
+- Streamlit documentation: docs.streamlit.io
+- YOLOv8 documentation: docs.ultralytics.com
+
+Getting Help:
+1. Check this setup guide first
+2. Review troubleshooting section
+3. Search existing GitHub issues
+4. Create new issue with detailed error information
+
+Best Practices:
+1. Always use virtual environments
+2. Keep dependencies updated
+3. Test changes in demo mode first
+4. Document any customizations
+
+SECURITY CONSIDERATIONS
+======================
+
+1. Network Security:
+   - Don't expose to public internet without authentication
+   - Use HTTPS in production
+   - Implement rate limiting for public deployments
+
+2. File Upload Security:
+   - Application validates file types
+   - Consider file size limits
+   - Scan uploads for malware in production
+
+3. Data Privacy:
+   - Uploaded images are processed locally
+   - No data is sent to external services
+   - Clear temporary files regularly
+
+SUCCESS CHECKLIST
+=================
+
+Installation Complete When:
+□ Python 3.8+ installed and verified
+□ Virtual environment created and activated
+□ All dependencies installed without errors
+□ Application starts without errors
+□ Web interface loads at http://localhost:8501
+□ Demo mode works with test image
+□ Results display correctly with charts and visualizations
+
+You're ready to start detecting waste and making cities cleaner!
+
+For additional help, refer to the README.md file or create an issue on the project repository.

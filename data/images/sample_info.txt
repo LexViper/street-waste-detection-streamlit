@@ -1,0 +1,16 @@
+Sample Images for Clean City Waste Detection
+
+This folder should contain sample images for testing the waste detection system.
+Recommended image types:
+- Street scenes with litter
+- Plastic bottles and containers
+- Paper waste and cardboard
+- Organic waste like food scraps
+- Mixed waste scenarios
+
+For testing purposes, you can add your own images here or download sample images from:
+- Unsplash (search for "litter", "waste", "recycling")
+- Pixabay (search for "garbage", "trash", "street cleaning")
+- Your own photos of urban waste
+
+Supported formats: PNG, JPG, JPEG, BMP, TIFF
